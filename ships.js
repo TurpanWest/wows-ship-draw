@@ -11,6 +11,6 @@ const DEFAULT_SHIPS = [
   { name: "淀", type: "CA" },
   { name: "白龙", type: "CV" },
   { name: "信浓", type: "CV" },
-  { name: "U-2501", type: "SS" }
+  { name: "U-2501", type: "SS" },
   { name: "U-4501", type: "SS" }
 ];
