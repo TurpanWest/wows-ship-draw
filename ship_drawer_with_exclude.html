@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>舰船抽选器（支持类型排除）</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f4f6fa;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .input-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+    input[type="text"], select {
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+    .add-btn { background-color: #007acc; color: white; }
+    .reset-btn { background-color: #999; color: white; }
+    .draw-btn {
+      background-color: #00897b;
+      color: white;
+      margin-top: 1rem;
+      min-width: 160px;
+    }
+    #ship-list {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      max-height: 300px;
+      overflow-y: auto;
+      width: 400px;
+      padding: 1rem;
+    }
+    .ship-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 4px 0;
+    }
+    .ship-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .type-label {
+      font-size: 0.85rem;
+      color: #555;
+      background: #eee;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+    .delete-btn {
+      background-color: #e53935;
+      color: white;
+      padding: 2px 8px;
+      font-size: 0.9rem;
+      border-radius: 4px;
+    }
+    #result {
+      margin-top: 1.5rem;
+      font-size: 1.4rem;
+      padding: 10px;
+      border: 1px solid #ffc107;
+      background: #fffde7;
+      color: #d84315;
+      border-radius: 6px;
+      min-width: 200px;
+    }
+    #filters {
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎯 舰船抽选器（支持类型排除）</h1>
+
+  <div class="input-row">
+    <input type="text" id="newShipName" placeholder="舰船名称" />
+    <select id="newShipType">
+      <option value="DD">DD</option>
+      <option value="CA">CA</option>
+      <option value="BB">BB</option>
+      <option value="CV">CV</option>
+      <option value="SS">SS</option>
+    </select>
+    <button class="add-btn" onclick="addShip()">➕ 添加舰船</button>
+    <button class="reset-btn" onclick="resetToDefault()">🔁 恢复默认</button>
+  </div>
+
+  <div id="filters">
+    <label><input type="checkbox" id="excludeCV"> 🚫 排除 CV</label>
+    <label style="margin-left: 15px;"><input type="checkbox" id="excludeSS"> 🚫 排除 SS</label>
+  </div>
+
+  <div id="ship-list"></div>
+
+  <button class="draw-btn" onclick="drawShip()">抽一艘舰船</button>
+  <div id="result"></div>
+
+  <script>
+    const DEFAULT_SHIPS = [{ name: "岛风", type: "DD" }, { name: "大凤", type: "CV" }, { name: "伊19", type: "SS" }, { name: "蒙大拿", type: "BB" }, { name: "吉野B", type: "CA" }, { name: "Z-52", type: "DD" }, { name: "信浓", type: "CV" }, { name: "U-2501", type: "SS" }];
+    let ships = JSON.parse(localStorage.getItem("shipListV2")) || DEFAULT_SHIPS.slice();
+
+    function saveState() {
+      localStorage.setItem("shipListV2", JSON.stringify(ships));
+    }
+
+    function renderList() {
+      const container = document.getElementById("ship-list");
+      container.innerHTML = "";
+      ships.forEach((ship, idx) => {
+        const div = document.createElement("div");
+        div.className = "ship-item";
+        div.innerHTML = `
+          <div class='ship-left'>
+            <input type='checkbox' id='ship-${idx}' checked>
+            <span>${ship.name}</span>
+            <span class='type-label'>${ship.type}</span>
+          </div>
+          <button class='delete-btn' onclick='removeShip(${idx})'>❌</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function addShip() {
+      const name = document.getElementById("newShipName").value.trim();
+      const type = document.getElementById("newShipType").value;
+      if (name && !ships.some(s => s.name === name)) {
+        ships.push({ name: name, type: type });
+        saveState();
+        renderList();
+      }
+      document.getElementById("newShipName").value = "";
+    }
+
+    function removeShip(index) {
+      ships.splice(index, 1);
+      saveState();
+      renderList();
+    }
+
+    function resetToDefault() {
+      ships = DEFAULT_SHIPS.slice();
+      saveState();
+      renderList();
+    }
+
+    function drawShip() {
+      const excludeCV = document.getElementById("excludeCV").checked;
+      const excludeSS = document.getElementById("excludeSS").checked;
+
+      const selected = ships.filter((ship, idx) => {
+        if (excludeCV && ship.type === "CV") return false;
+        if (excludeSS && ship.type === "SS") return false;
+        return document.getElementById("ship-" + idx)?.checked;
+      });
+
+      const resultDiv = document.getElementById("result");
+      if (selected.length === 0) {
+        resultDiv.innerText = "⚠️ 没有符合条件的舰船可供抽选";
+        return;
+      }
+
+      const chosen = selected[Math.floor(Math.random() * selected.length)];
+      resultDiv.innerText = `你抽中了：${chosen.name}（${chosen.type}）`;
+    }
+
+    renderList();
+  </script>
+</body>
+</html>
