@@ -85,7 +85,7 @@ const DEFAULT_SHIPS = [
   { name: "勃艮第", type: "BB" },
   { name: "布伦努斯", type: "CA" },
   { name: "亨利四世", type: "CA" },
-  { name: "玛索", type: "CA" },
+  { name: "玛索", type: "DD" },
   { name: "斯维亚", type: "CA" },
   { name: "斯莫兰", type: "DD" },
   { name: "格但斯克", type: "DD" },
