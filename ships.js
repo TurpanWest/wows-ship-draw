@@ -113,5 +113,7 @@ const DEFAULT_SHIPS = [
   { name: "旅顺", type: "DD" },
   { name: "自由", type: "DD" },
   { name: "乌特勒支", type: "CA" },
-  { name: "卡斯蒂利亚", type: "CA" }
+  { name: "卡斯蒂利亚", type: "CA" },
+  { name: "威廉一世", type: "BB" },
+  { name: "无阻", type: "BB" }
 ];
