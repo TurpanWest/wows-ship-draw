@@ -115,5 +115,8 @@ const DEFAULT_SHIPS = [
   { name: "乌特勒支", type: "CA" },
   { name: "卡斯蒂利亚", type: "CA" },
   { name: "威廉一世", type: "BB" },
-  { name: "无阻", type: "BB" }
+  { name: "无阻", type: "BB" },
+  { name: "拉蒂格海军上将", type: "CA" },
+  { name: "拉菲", type: "DD" },
+  { name: "阿罗娜的小鲸鱼", type: "SS" }
 ];
