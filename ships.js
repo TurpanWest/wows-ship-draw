@@ -17,7 +17,6 @@ const DEFAULT_SHIPS = [
   { name: "威斯康星", type: "BB" },
   { name: "罗德岛", type: "BB" },
   { name: "俄亥俄", type: "BB" },
-  { name: "俄勒冈", type: "BB" },
   { name: "得梅因", type: "CA" },
   { name: "伍斯特", type: "CA" },
   { name: "塞勒姆", type: "CA" },
