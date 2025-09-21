@@ -118,5 +118,8 @@ const DEFAULT_SHIPS = [
   { name: "无阻", type: "BB" },
   { name: "拉蒂格海军上将", type: "CA" },
   { name: "拉菲", type: "DD" },
-  { name: "阿罗娜的小鲸鱼", type: "SS" }
+  { name: "阿罗娜的小鲸鱼", type: "SS" },
+  { name: "西伯利亚", type: "BB" },
+  { name: "大和魁", type: "BB" },
+  { name: "钏路", type: "CA" },
 ];
