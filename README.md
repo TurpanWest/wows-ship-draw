@@ -37,6 +37,9 @@ cd wows-ship-draw
 
 # Start a local server (Python 3)
 python -m http.server 8000
+```
+
+---
 
 ## 🛠️ Future Plans
 
