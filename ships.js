@@ -121,4 +121,5 @@ const DEFAULT_SHIPS = [
   { name: "西伯利亚", type: "BB" },
   { name: "大和魁", type: "BB" },
   { name: "钏路", type: "CA" },
+  { name: "阿达尔伯特亲王", type: "CA" },
 ];
