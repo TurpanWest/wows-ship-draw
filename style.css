@@ -7,6 +7,31 @@
       flex-direction: column;
       align-items: center;
     }
+    .language-switcher {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 5px;
+    }
+    .lang-btn {
+      padding: 0.3rem 0.8rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      color: #333;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover {
+      background-color: #f0f0f0;
+    }
+    .lang-btn.active {
+      background-color: #007acc;
+      color: white;
+      border-color: #007acc;
+    }
     h1 {
       font-size: 1.8rem;
       margin-bottom: 1rem;
