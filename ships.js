@@ -124,6 +124,9 @@ const SHIPS_DATA = {
     { name: "Yamato Kai", type: "BB" },
     { name: "Kushiro", type: "CA" },
     { name: "Prinz Adalbert", type: "CA" },
+    { name: "Hawaii", type: "CA" },
+    { name: "Bremen", type: "CA" },
+    { name: "Aki", type: "BB" },
   ],
   zh: [
     { name: "岛风", type: "DD" },
@@ -249,6 +252,9 @@ const SHIPS_DATA = {
     { name: "大和魁", type: "BB" },
     { name: "钏路", type: "CA" },
     { name: "阿达尔伯特亲王", type: "CA" },
+    { name: "夏威夷", type: "CA" },
+    { name: "不来梅", type: "CA" },
+    { name: "安艺", type: "BB" },
   ]
 };
 
