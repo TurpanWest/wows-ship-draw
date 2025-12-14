@@ -1,5 +1,5 @@
 // 多语言舰船数据
-const SHIPS_DATA = {
+export const SHIPS_DATA = {
   en: [
     { name: "Shimakaze", type: "DD" },
     { name: "Harugumo", type: "DD" },
@@ -259,4 +259,4 @@ const SHIPS_DATA = {
 };
 
 // 默认使用英文舰船数据
-const DEFAULT_SHIPS = SHIPS_DATA.en;
+export const DEFAULT_SHIPS = SHIPS_DATA.en;

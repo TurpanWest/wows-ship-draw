@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ship Drawer</title>
+  <script type="module" crossorigin src="/assets/index-SoRhBD_g.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-B327jEJM.css">
+</head>
+<body>
+  <div class="language-switcher">
+    <button class="lang-btn" onclick="switchLanguage('en')" id="lang-en">English</button>
+    <button class="lang-btn" onclick="switchLanguage('zh')" id="lang-zh">中文</button>
+  </div>
+
+  <h1 id="title">Ship Drawer</h1>
+
+  <div class="input-row">
+    <input type="text" id="newShipName" placeholder="Ship Name" />
+    <select id="newShipType">
+      <option value="DD">DD</option>
+      <option value="CA">CA</option>
+      <option value="BB">BB</option>
+      <option value="CV">CV</option>
+      <option value="SS">SS</option>
+    </select>
+    <button class="add-btn" onclick="addShip()" id="add-btn">Add Ship</button>
+    <button class="reset-btn" onclick="resetToDefault()" id="reset-btn">Reset to Default</button>
+  </div>
+
+  <div id="filters">
+    <label><input type="checkbox" id="excludeCV">  
+      <span id="exclude-cv-text">Exclude CV</span>
+    </label>
+    <label style="margin-left: 15px;"><input type="checkbox" id="excludeSS"> 
+      <span id="exclude-ss-text">Exclude SS</span>
+    </label>
+  </div>
+
+  <div id="ship-list"></div>
+
+  <button class="draw-btn" onclick="drawShip()" id="draw-btn">Draw a Ship</button>
+  <div id="result"></div>
+</body>
+</html>
