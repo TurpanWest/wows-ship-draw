@@ -11,7 +11,7 @@
     <button class="lang-btn" onclick="switchLanguage('zh')" id="lang-zh">中文</button>
   </div>
 
-  <h1 id="title">🎯 Ship Drawer</h1>
+  <h1 id="title">Ship Drawer</h1>
 
   <div class="input-row">
     <input type="text" id="newShipName" placeholder="Ship Name" />
@@ -22,13 +22,17 @@
       <option value="CV">CV</option>
       <option value="SS">SS</option>
     </select>
-    <button class="add-btn" onclick="addShip()" id="add-btn">➕ Add Ship</button>
-    <button class="reset-btn" onclick="resetToDefault()" id="reset-btn">🔁 Reset to Default</button>
+    <button class="add-btn" onclick="addShip()" id="add-btn">Add Ship</button>
+    <button class="reset-btn" onclick="resetToDefault()" id="reset-btn">Reset to Default</button>
   </div>
 
   <div id="filters">
-    <label><input type="checkbox" id="excludeCV"> 🚫 <span id="exclude-cv-text">Exclude CV</span></label>
-    <label style="margin-left: 15px;"><input type="checkbox" id="excludeSS"> 🚫 <span id="exclude-ss-text">Exclude SS</span></label>
+    <label><input type="checkbox" id="excludeCV">  
+      <span id="exclude-cv-text">Exclude CV</span>
+    </label>
+    <label style="margin-left: 15px;"><input type="checkbox" id="excludeSS"> 
+      <span id="exclude-ss-text">Exclude SS</span>
+    </label>
   </div>
 
   <div id="ship-list"></div>
@@ -41,25 +45,25 @@
     // 多语言文本
     const translations = {
       en: {
-        title: "🎯 Ship Drawer",
+        title: "Ship Drawer",
         placeholder: "Ship Name",
-        addShip: "➕ Add Ship",
-        resetDefault: "🔁 Reset to Default",
+        addShip: "Add New Ship",
+        resetDefault: "Reset Ship List",
         excludeCV: "Exclude CV",
         excludeSS: "Exclude SS",
         drawShip: "Draw a Ship",
-        noShipsMessage: "⚠️ No eligible ships available for drawing",
-        drawResult: "You drew: {name} ({type})"
+        noShipsMessage: "No eligible ships available for drawing",
+        drawResult: "You get: {name} ({type})"
       },
       zh: {
-        title: "🎯 舰船抽选器",
+        title: "舰船抽选器",
         placeholder: "舰船名称",
-        addShip: "➕ 添加舰船",
-        resetDefault: "🔁 恢复默认",
+        addShip: "添加舰船",
+        resetDefault: "恢复默认",
         excludeCV: "排除 CV",
         excludeSS: "排除 SS",
         drawShip: "抽一艘舰船",
-        noShipsMessage: "⚠️ 没有符合条件的舰船可供抽选",
+        noShipsMessage: "没有符合条件的舰船可供抽选",
         drawResult: "你抽中了：{name}（{type}）"
       }
     };
