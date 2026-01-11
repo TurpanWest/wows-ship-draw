@@ -107,3 +107,75 @@
     #filters {
       margin-bottom: 1rem;
     }
+    #filters label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    #filters input[type="checkbox"] {
+      margin: 0;
+    }
+    .input-row {
+      margin-top: 1rem;
+    }
+    #ship-list {
+      margin-bottom: 1rem;
+    }
+    #ship-list {
+      width: 100%;
+      max-width: 480px;
+    }
+    #result {
+      width: 100%;
+      max-width: 480px;
+      box-sizing: border-box;
+    }
+    #filters {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .delete-btn {
+      background-color: #e53935;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+      .language-switcher {
+        position: static;
+        align-self: flex-end;
+        margin-bottom: 0.5rem;
+      }
+      h1 {
+        font-size: 1.5rem;
+        text-align: center;
+      }
+      .input-row {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        max-width: 480px;
+      }
+      input[type="text"], select, .add-btn, .reset-btn {
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .draw-btn {
+        width: 100%;
+        max-width: 480px;
+        min-height: 44px;
+      }
+      #ship-list {
+        max-height: 50vh;
+      }
+      .ship-item {
+        gap: 8px;
+      }
+      #filters {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
