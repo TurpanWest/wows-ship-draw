@@ -17,29 +17,9 @@ This web tool is designed for World of Warships players who suffer from choice p
 - ✅ **Reset to Default**: Click "Reset to Default" to restore the drawing pool to the preset T10 ship list.
 - ✅ **Multi-language Support**: Switch between English and Chinese (中文) with the language buttons in the top-right corner.
 
-## 🌐 Languages
-
-- **English** (Default): Full English interface with English ship names
-- **中文**: Complete Chinese interface with Chinese ship names
-- Language preference is saved locally and persists between sessions
-
 ## 🚀 How to Use
 
-You can access this tool online via [GitHub Pages](https://turpanwest.github.io/wows-ship-draw/).
-
-### Local Development
-```bash
-# Clone the repository
-git clone https://github.com/turpanwest/wows-ship-draw.git
-
-# Navigate to the directory
-cd wows-ship-draw
-
-# Start a local server (Python 3)
-python -m http.server 8000
-```
-
----
+You can access this tool online via https://wows-ship-draw.vercel.app/.
 
 ## 🛠️ Future Plans
 
@@ -47,10 +27,4 @@ python -m http.server 8000
 - Add "Ship Type Weight" feature for players who prefer certain ship types
 - Add more languages support
 - Mobile app version
-
----
-
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE). 
 
