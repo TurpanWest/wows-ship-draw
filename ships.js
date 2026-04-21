@@ -128,6 +128,7 @@ export const SHIPS_DATA = {
     { name: "Bremen", type: "CA" },
     { name: "Aki", type: "BB" },
     { name: "Tonijn", type: "SS" },
+    { name: "Surcouf", type: "SS" },
   ],
   zh: [
     { name: "岛风", type: "DD" },
@@ -257,6 +258,7 @@ export const SHIPS_DATA = {
     { name: "不来梅", type: "CA" },
     { name: "安艺", type: "BB" },
     { name: "金枪鱼", type: "SS" },
+    { name: "絮库夫", type: "SS" },
   ]
 };
 
