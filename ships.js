@@ -135,6 +135,7 @@ export const SHIPS_DATA = {
     { name: "Châteaurenault", type: "DD" },
     { name: "Ocean", type: "CV" },
     { name: "I-56 44", type: "SS" },
+    { name: "Burrows", type: "DD" },
   ],
   zh: [
     { name: "岛风", type: "DD" },
@@ -271,6 +272,7 @@ export const SHIPS_DATA = {
     { name: "雷诺堡", type: "DD" },
     { name: "海洋", type: "CV" },
     { name: "伊-56 44", type: "SS" },
+    { name: "布洛士", type: "DD" },
   ]
 };
 
