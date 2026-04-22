@@ -134,6 +134,7 @@ export const SHIPS_DATA = {
     { name: "Pioneer", type: "CA" },
     { name: "Châteaurenault", type: "DD" },
     { name: "Ocean", type: "CV" },
+    { name: "I-56 44", type: "SS" },
   ],
   zh: [
     { name: "岛风", type: "DD" },
@@ -252,7 +253,7 @@ export const SHIPS_DATA = {
     { name: "卡斯蒂利亚", type: "CA" },
     { name: "威廉一世", type: "BB" },
     { name: "无阻", type: "BB" },
-    { name: "拉蒂格海军上将", type: "CA" },
+    { name: "拉蒂格上将", type: "CA" },
     { name: "拉菲", type: "DD" },
     { name: "阿罗娜的小鲸鱼", type: "SS" },
     { name: "西伯利亚", type: "BB" },
@@ -269,6 +270,7 @@ export const SHIPS_DATA = {
     { name: "先驱", type: "CA" },
     { name: "雷诺堡", type: "DD" },
     { name: "海洋", type: "CV" },
+    { name: "伊-56 44", type: "SS" },
   ]
 };
 
