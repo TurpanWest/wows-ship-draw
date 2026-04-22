@@ -131,6 +131,7 @@ export const SHIPS_DATA = {
     { name: "Surcouf", type: "SS" },
     { name: "Thor", type: "BB" },
     { name: "Independencia", type: "CV" },
+    { name: "Pioneer", type: "CA" },
   ],
   zh: [
     { name: "岛风", type: "DD" },
@@ -263,6 +264,7 @@ export const SHIPS_DATA = {
     { name: "絮库夫", type: "SS" },
     { name: "托尔", type: "BB" },
     { name: "自主", type: "CV" },
+    { name: "先驱", type: "CA" },
   ]
 };
 
