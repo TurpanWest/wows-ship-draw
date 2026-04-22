@@ -132,6 +132,7 @@ export const SHIPS_DATA = {
     { name: "Thor", type: "BB" },
     { name: "Independencia", type: "CV" },
     { name: "Pioneer", type: "CA" },
+    { name: "Châteaurenault", type: "DD" },
   ],
   zh: [
     { name: "岛风", type: "DD" },
@@ -265,6 +266,7 @@ export const SHIPS_DATA = {
     { name: "托尔", type: "BB" },
     { name: "自主", type: "CV" },
     { name: "先驱", type: "CA" },
+    { name: "雷诺堡", type: "DD" },
   ]
 };
 
