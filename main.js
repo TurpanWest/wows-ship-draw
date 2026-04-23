@@ -10,19 +10,19 @@ const translations = {
     excludeSS: "Exclude SS",
     drawShip: "Draw a Ship",
     noShipsMessage: "No eligible ships available for drawing",
-    drawResult: "You get: {name} ({type})"
+    drawResult: "You get: {name} ({type})",
   },
   zh: {
     title: "舰船抽选器",
     placeholder: "舰船名称",
     addShip: "添加舰船",
     resetDefault: "恢复默认",
-    excludeCV: "排除 CV",
-    excludeSS: "排除 SS",
-    drawShip: "抽一艘舰船",
+    excludeCV: "不玩 CV",
+    excludeSS: "不玩 SS",
+    drawShip: "开抽",
     noShipsMessage: "没有符合条件的舰船可供抽选",
-    drawResult: "你抽中了：{name}（{type}）"
-  }
+    drawResult: "你抽中了：{name}（{type}）",
+  },
 };
 
 let currentLanguage = localStorage.getItem("language") || "en";

@@ -1,43 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css">
-  <title>Ship Drawer</title>
-</head>
-<body>
-  <div class="language-switcher">
-    <button class="lang-btn" onclick="switchLanguage('en')" id="lang-en">English</button>
-    <button class="lang-btn" onclick="switchLanguage('zh')" id="lang-zh">中文</button>
-  </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Ship Drawer</title>
+    </head>
+    <body>
+        <div class="language-switcher">
+            <button
+                class="lang-btn"
+                onclick="switchLanguage('en')"
+                id="lang-en"
+            >
+                English
+            </button>
+            <button
+                class="lang-btn"
+                onclick="switchLanguage('zh')"
+                id="lang-zh"
+            >
+                中文
+            </button>
+        </div>
 
-  <h1 id="title">Ship Drawer</h1>
+        <h1 id="title">Ship Drawer</h1>
 
+        <div id="filters">
+            <label
+                ><input type="checkbox" id="excludeCV" /><span
+                    id="exclude-cv-text"
+                    >Exclude CV</span
+                ></label
+            >
+            <label
+                ><input type="checkbox" id="excludeSS" /><span
+                    id="exclude-ss-text"
+                    >Exclude SS</span
+                ></label
+            >
+        </div>
 
+        <div id="ship-list"></div>
 
-  <div id="filters">
-    <label><input type="checkbox" id="excludeCV"><span id="exclude-cv-text">Exclude CV</span></label>
-    <label><input type="checkbox" id="excludeSS"><span id="exclude-ss-text">Exclude SS</span></label>
-  </div>
+        <button class="draw-btn" onclick="drawShip()" id="draw-btn">
+            Draw a Ship
+        </button>
+        <div id="result"></div>
 
-  <div id="ship-list"></div>
-
-  <button class="draw-btn" onclick="drawShip()" id="draw-btn">Draw a Ship</button>
-  <div id="result"></div>
-
-    <div class="input-row">
-    <input type="text" id="newShipName" placeholder="Ship Name" />
-    <select id="newShipType">
-      <option value="DD">DD</option>
-      <option value="CA">CA</option>
-      <option value="BB">BB</option>
-      <option value="CV">CV</option>
-      <option value="SS">SS</option>
-    </select>
-    <button class="add-btn" onclick="addShip()" id="add-btn">Add Ship</button>
-    <button class="reset-btn" onclick="resetToDefault()" id="reset-btn">Reset to Default</button>
-  </div>
-  <script type="module" src="main.js"></script>
-</body>
+        <div class="input-row">
+            <input type="text" id="newShipName" placeholder="Ship Name" />
+            <select id="newShipType">
+                <option value="DD">DD</option>
+                <option value="CA">CA</option>
+                <option value="BB">BB</option>
+                <option value="CV">CV</option>
+                <option value="SS">SS</option>
+            </select>
+            <button class="add-btn" onclick="addShip()" id="add-btn">
+                Add Ship
+            </button>
+            <button class="reset-btn" onclick="resetToDefault()" id="reset-btn">
+                Reset to Default
+            </button>
+        </div>
+        <script type="module" src="main.js"></script>
+    </body>
 </html>
