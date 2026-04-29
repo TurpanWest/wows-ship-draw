@@ -4,7 +4,7 @@ const translations = {
   en: {
     title: "Ship Drawer",
     placeholder: "Ship Name",
-    addShip: "Add Ship",
+    addShip: "Add",
     resetDefault: "Reset to Default",
     excludeCV: "Exclude CV",
     excludeSS: "Exclude SS",
@@ -15,7 +15,7 @@ const translations = {
   zh: {
     title: "舰船抽选器",
     placeholder: "舰船名称",
-    addShip: "添加舰船",
+    addShip: "添加",
     resetDefault: "恢复默认",
     excludeCV: "不玩 CV",
     excludeSS: "不玩 SS",
