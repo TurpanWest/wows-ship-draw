@@ -39,9 +39,31 @@ const translations = {
 
 const HISTORY_MAX = 5;
 
+// Build EN<->ZH name maps from the parallel SHIPS_DATA arrays.
+// Custom (user-added) ships won't appear in either map and are left as-is.
+const NAME_MAPS = (() => {
+  const en2zh = Object.create(null);
+  const zh2en = Object.create(null);
+  const en = SHIPS_DATA.en;
+  const zh = SHIPS_DATA.zh;
+  const len = Math.min(en.length, zh.length);
+  for (let i = 0; i < len; i++) {
+    en2zh[en[i].name] = zh[i].name;
+    zh2en[zh[i].name] = en[i].name;
+  }
+  return { en2zh, zh2en };
+})();
+
+function translateName(name, toLang) {
+  if (toLang === "zh") return NAME_MAPS.en2zh[name] || name;
+  if (toLang === "en") return NAME_MAPS.zh2en[name] || name;
+  return name;
+}
+
 let currentLanguage = localStorage.getItem("language") || "en";
 let ships = [];
 let drawHistory = [];
+let lastDrawn = null;
 
 function initializeShips() {
   const savedShips = localStorage.getItem("shipListV2");
@@ -105,17 +127,39 @@ function renderHistory() {
 }
 
 function switchLanguage(lang) {
+  const previousLang = currentLanguage;
   currentLanguage = lang;
   localStorage.setItem("language", lang);
   document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+
+  if (lang !== previousLang) {
+    ships = ships.map((s) => ({ name: translateName(s.name, lang), type: s.type }));
+    drawHistory = drawHistory.map((h) => ({ name: translateName(h.name, lang), type: h.type }));
+    if (lastDrawn) lastDrawn.name = translateName(lastDrawn.name, lang);
+    saveState();
+    saveHistory();
+    renderList();
+    renderHistory();
+  }
+
   updateUIText();
+  renderResult();
   document.getElementById("lang-en").classList.toggle("active", lang === "en");
   document.getElementById("lang-zh").classList.toggle("active", lang === "zh");
-  const savedShips = localStorage.getItem("shipListV2");
-  if (!savedShips) {
-    ships = SHIPS_DATA[currentLanguage].slice();
-    renderList();
+}
+
+function renderResult() {
+  const resultDiv = document.getElementById("result");
+  const t = translations[currentLanguage];
+  if (!lastDrawn) {
+    resultDiv.textContent = t.standby;
+    delete resultDiv.dataset.drawn;
+    return;
   }
+  resultDiv.textContent = t.drawResult
+    .replace("{name}", lastDrawn.name)
+    .replace("{type}", lastDrawn.type);
+  resultDiv.dataset.drawn = "1";
 }
 
 function updateUIText() {
@@ -132,11 +176,6 @@ function updateUIText() {
   document.getElementById("add-label").textContent = t.addLabel;
   document.getElementById("history-label").textContent = t.historyLabel;
   updateRosterCount();
-  // Reset result to standby on language change
-  const r = document.getElementById("result");
-  if (!r.dataset.drawn) {
-    r.textContent = t.standby;
-  }
 }
 
 function updateRosterCount() {
@@ -212,15 +251,14 @@ function drawShip() {
   resultDiv.classList.add("result-stamp");
 
   if (selected.length === 0) {
+    lastDrawn = null;
     resultDiv.textContent = t.noShipsMessage;
     resultDiv.dataset.drawn = "1";
     return;
   }
   const chosen = selected[Math.floor(Math.random() * selected.length)];
-  resultDiv.textContent = t.drawResult
-    .replace("{name}", chosen.name)
-    .replace("{type}", chosen.type);
-  resultDiv.dataset.drawn = "1";
+  lastDrawn = { name: chosen.name, type: chosen.type };
+  renderResult();
   pushHistory(chosen);
 }
 
