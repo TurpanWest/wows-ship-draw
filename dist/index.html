@@ -1,44 +1,119 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Ship Drawer</title>
-  <script type="module" crossorigin src="/assets/index-SoRhBD_g.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-B327jEJM.css">
-</head>
-<body>
-  <div class="language-switcher">
-    <button class="lang-btn" onclick="switchLanguage('en')" id="lang-en">English</button>
-    <button class="lang-btn" onclick="switchLanguage('zh')" id="lang-zh">中文</button>
-  </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin
+        />
+        <title>Ship Drawer · Fleet Manifest</title>
+      <script type="module" crossorigin src="/assets/index-B94Gd69f.js"></script>
+      <link rel="stylesheet" crossorigin href="/assets/index-D9zX53iD.css">
+    </head>
+    <body>
+        <div class="language-switcher">
+            <button
+                class="lang-btn"
+                onclick="switchLanguage('en')"
+                id="lang-en"
+            >
+                EN
+            </button>
+            <button
+                class="lang-btn"
+                onclick="switchLanguage('zh')"
+                id="lang-zh"
+            >
+                中文
+            </button>
+        </div>
 
-  <h1 id="title">Ship Drawer</h1>
+        <main class="sheet">
+            <header class="sheet__head">
+                <div class="sheet__meta">
+                    <span id="sheet-stamp-l">SYS · WOWS</span>
+                    <span id="sheet-stamp-r">№ T-10</span>
+                </div>
+                <h1 id="title" class="sheet__title">Ship Drawer</h1>
+                <p id="subtitle" class="sheet__subtitle">
+                    Fleet Roster · Random Draw
+                </p>
+                <div class="sheet__rule"></div>
+            </header>
 
-  <div class="input-row">
-    <input type="text" id="newShipName" placeholder="Ship Name" />
-    <select id="newShipType">
-      <option value="DD">DD</option>
-      <option value="CA">CA</option>
-      <option value="BB">BB</option>
-      <option value="CV">CV</option>
-      <option value="SS">SS</option>
-    </select>
-    <button class="add-btn" onclick="addShip()" id="add-btn">Add Ship</button>
-    <button class="reset-btn" onclick="resetToDefault()" id="reset-btn">Reset to Default</button>
-  </div>
+            <section id="filters">
+                <span class="section-label" id="filters-label">FILTERS</span>
+                <label
+                    ><input type="checkbox" id="excludeCV" /><span
+                        id="exclude-cv-text"
+                        >Exclude CV</span
+                    ></label
+                >
+                <label
+                    ><input type="checkbox" id="excludeSS" /><span
+                        id="exclude-ss-text"
+                        >Exclude SS</span
+                    ></label
+                >
+            </section>
 
-  <div id="filters">
-    <label><input type="checkbox" id="excludeCV">  
-      <span id="exclude-cv-text">Exclude CV</span>
-    </label>
-    <label style="margin-left: 15px;"><input type="checkbox" id="excludeSS"> 
-      <span id="exclude-ss-text">Exclude SS</span>
-    </label>
-  </div>
+            <section class="roster">
+                <div class="section-head">
+                    <span class="section-label" id="roster-label">FLEET</span>
+                    <span class="section-meta" id="roster-count">0 SHIPS</span>
+                </div>
+                <div id="ship-list"></div>
+            </section>
 
-  <div id="ship-list"></div>
+            <button class="draw-btn" onclick="drawShip()" id="draw-btn">
+                Draw a Ship
+            </button>
 
-  <button class="draw-btn" onclick="drawShip()" id="draw-btn">Draw a Ship</button>
-  <div id="result"></div>
-</body>
+            <div id="result"></div>
+
+            <section class="add">
+                <span class="section-label" id="add-label">ADD TO FLEET</span>
+                <div class="input-row">
+                    <input
+                        type="text"
+                        id="newShipName"
+                        placeholder="Ship Name"
+                    />
+                    <select id="newShipType">
+                        <option value="DD">DD</option>
+                        <option value="CA">CA</option>
+                        <option value="BB">BB</option>
+                        <option value="CV">CV</option>
+                        <option value="SS">SS</option>
+                    </select>
+                    <button
+                        class="add-btn"
+                        onclick="addShip()"
+                        id="add-btn"
+                    >
+                        Add
+                    </button>
+                    <button
+                        class="reset-btn"
+                        onclick="resetToDefault()"
+                        id="reset-btn"
+                    >
+                        Reset
+                    </button>
+                </div>
+            </section>
+
+            <footer class="sheet__footer">
+                <span
+                    ><span class="sheet__footer-mark"></span
+                    ><span id="status-text">STATUS · ARMED</span></span
+                >
+                <span id="classification-text">UNCLASSIFIED · OPEN ROSTER</span>
+            </footer>
+        </main>
+
+    </body>
 </html>

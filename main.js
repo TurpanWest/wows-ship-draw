@@ -3,25 +3,41 @@ import { SHIPS_DATA } from "./ships.js";
 const translations = {
   en: {
     title: "Ship Drawer",
+    subtitle: "Fleet Roster · Random Draw",
     placeholder: "Ship Name",
     addShip: "Add",
-    resetDefault: "Reset to Default",
+    resetDefault: "Reset",
     excludeCV: "Exclude CV",
     excludeSS: "Exclude SS",
     drawShip: "Draw a Ship",
     noShipsMessage: "No eligible ships available for drawing",
-    drawResult: "You get: {name} ({type})",
+    drawResult: "{name}\nCLASS · {type}",
+    standby: "— STANDBY —",
+    filtersLabel: "FILTERS",
+    rosterLabel: "FLEET",
+    addLabel: "ADD TO FLEET",
+    countSuffix: "SHIPS",
+    statusText: "STATUS · ARMED",
+    classificationText: "UNCLASSIFIED · OPEN ROSTER",
   },
   zh: {
     title: "舰船抽选器",
+    subtitle: "舰队名册 · 随机抽取",
     placeholder: "舰船名称",
     addShip: "添加",
-    resetDefault: "恢复默认",
+    resetDefault: "重置",
     excludeCV: "不玩 CV",
     excludeSS: "不玩 SS",
     drawShip: "开抽",
     noShipsMessage: "没有符合条件的舰船可供抽选",
-    drawResult: "你抽中了：{name}（{type}）",
+    drawResult: "{name}\n舰种 · {type}",
+    standby: "— 待命 —",
+    filtersLabel: "筛选",
+    rosterLabel: "舰队",
+    addLabel: "添加舰船",
+    countSuffix: "艘",
+    statusText: "状态 · 就绪",
+    classificationText: "公开名册 · 无密级",
   },
 };
 
@@ -58,12 +74,36 @@ function switchLanguage(lang) {
 function updateUIText() {
   const t = translations[currentLanguage];
   document.getElementById("title").textContent = t.title;
+  document.getElementById("subtitle").textContent = t.subtitle;
   document.getElementById("newShipName").placeholder = t.placeholder;
   document.getElementById("add-btn").textContent = t.addShip;
   document.getElementById("reset-btn").textContent = t.resetDefault;
   document.getElementById("exclude-cv-text").textContent = t.excludeCV;
   document.getElementById("exclude-ss-text").textContent = t.excludeSS;
   document.getElementById("draw-btn").textContent = t.drawShip;
+  document.getElementById("filters-label").textContent = t.filtersLabel;
+  document.getElementById("roster-label").textContent = t.rosterLabel;
+  document.getElementById("add-label").textContent = t.addLabel;
+  document.getElementById("status-text").textContent = t.statusText;
+  document.getElementById("classification-text").textContent = t.classificationText;
+  updateRosterCount();
+  // Reset result to standby on language change
+  const r = document.getElementById("result");
+  if (!r.dataset.drawn) {
+    r.textContent = t.standby;
+  }
+}
+
+function updateRosterCount() {
+  const t = translations[currentLanguage];
+  const el = document.getElementById("roster-count");
+  if (el) el.textContent = ships.length + " " + t.countSuffix;
+}
+
+function escapeHTML(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  })[c]);
 }
 
 function renderList() {
@@ -72,23 +112,19 @@ function renderList() {
   ships.forEach((ship, idx) => {
     const div = document.createElement("div");
     div.className = "ship-item";
+    div.style.animationDelay = Math.min(idx * 12, 240) + "ms";
     div.innerHTML =
       "<div class='ship-left'>" +
-      "<input type='checkbox' id='ship-" +
-      idx +
-      "' checked>" +
-      "<span>" +
-      ship.name +
-      "</span>" +
-      "<span class='type-label'>" +
-      ship.type +
+      "<input type='checkbox' id='ship-" + idx + "' checked>" +
+      "<span>" + escapeHTML(ship.name) + "</span>" +
+      "<span class='type-label' data-type='" + escapeHTML(ship.type) + "'>" +
+      escapeHTML(ship.type) +
       "</span>" +
       "</div>" +
-      "<button class='delete-btn' onclick='removeShip(" +
-      idx +
-      ")'>❌</button>";
+      "<button class='delete-btn' onclick='removeShip(" + idx + ")' aria-label='Remove'>✕</button>";
     container.appendChild(div);
   });
+  updateRosterCount();
 }
 
 function addShip() {
@@ -124,14 +160,22 @@ function drawShip() {
   });
   const resultDiv = document.getElementById("result");
   const t = translations[currentLanguage];
+
+  // Re-trigger stamp animation
+  resultDiv.classList.remove("result-stamp");
+  void resultDiv.offsetWidth;
+  resultDiv.classList.add("result-stamp");
+
   if (selected.length === 0) {
-    resultDiv.innerText = t.noShipsMessage;
+    resultDiv.textContent = t.noShipsMessage;
+    resultDiv.dataset.drawn = "1";
     return;
   }
   const chosen = selected[Math.floor(Math.random() * selected.length)];
-  resultDiv.innerText = t.drawResult
+  resultDiv.textContent = t.drawResult
     .replace("{name}", chosen.name)
     .replace("{type}", chosen.type);
+  resultDiv.dataset.drawn = "1";
 }
 
 initializeShips();
