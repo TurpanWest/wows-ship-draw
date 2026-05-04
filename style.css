@@ -106,35 +106,15 @@ body {
 /* ─── Sheet header ───────────────────────────────────────────── */
 .sheet__head { text-align: center; margin-bottom: 1.5rem; }
 
-.sheet__meta {
-    display: flex;
-    justify-content: space-between;
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
-    color: var(--ink-soft);
-    text-transform: uppercase;
-    margin-bottom: 0.85rem;
-}
-
 .sheet__title {
     font-family: "Big Shoulders Stencil Text", "IBM Plex Sans", sans-serif;
     font-weight: 800;
     font-size: clamp(2.2rem, 7vw, 3rem);
     line-height: 1;
     letter-spacing: 0.05em;
-    margin: 0 0 0.55rem;
+    margin: 0 0 0.85rem;
     text-transform: uppercase;
     color: var(--ink);
-}
-
-.sheet__subtitle {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.78rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--sea);
-    margin: 0 0 1rem;
 }
 
 .sheet__rule {
@@ -445,29 +425,6 @@ select {
 .reset-btn { background: var(--paper); color: var(--ink); }
 .reset-btn:hover { background: var(--ink); color: var(--paper); }
 
-/* ─── Sheet footer ───────────────────────────────────────────── */
-.sheet__footer {
-    margin-top: 1.5rem;
-    padding-top: 0.85rem;
-    border-top: 1px dashed var(--ink-2);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-}
-.sheet__footer-mark {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    background: var(--signal);
-    margin-right: 0.5rem;
-    vertical-align: 1px;
-}
-
 /* ─── Animations ─────────────────────────────────────────────── */
 @keyframes rosterFadeIn {
     from { opacity: 0; transform: translateY(3px); }
@@ -495,12 +452,10 @@ select {
         box-shadow: 4px 4px 0 var(--ink);
     }
     .sheet__title { font-size: 2.2rem; }
-    .sheet__meta { font-size: 0.62rem; }
     .input-row { grid-template-columns: 1fr 1fr; }
     .input-row > input[type="text"] { grid-column: 1 / -1; }
     .draw-btn { font-size: 1.25rem; padding: 0.85rem 1rem; }
     #filters { gap: 0.85rem; }
-    .sheet__footer { flex-direction: column; gap: 0.4rem; align-items: flex-start; }
 }
 
 @media (prefers-reduced-motion: reduce) {

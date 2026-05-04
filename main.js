@@ -3,7 +3,6 @@ import { SHIPS_DATA } from "./ships.js";
 const translations = {
   en: {
     title: "Ship Drawer",
-    subtitle: "Fleet Roster · Random Draw",
     placeholder: "Ship Name",
     addShip: "Add",
     resetDefault: "Reset",
@@ -17,12 +16,9 @@ const translations = {
     rosterLabel: "FLEET",
     addLabel: "ADD TO FLEET",
     countSuffix: "SHIPS",
-    statusText: "STATUS · ARMED",
-    classificationText: "UNCLASSIFIED · OPEN ROSTER",
   },
   zh: {
     title: "舰船抽选器",
-    subtitle: "舰队名册 · 随机抽取",
     placeholder: "舰船名称",
     addShip: "添加",
     resetDefault: "重置",
@@ -36,8 +32,6 @@ const translations = {
     rosterLabel: "舰队",
     addLabel: "添加舰船",
     countSuffix: "艘",
-    statusText: "状态 · 就绪",
-    classificationText: "公开名册 · 无密级",
   },
 };
 
@@ -74,7 +68,6 @@ function switchLanguage(lang) {
 function updateUIText() {
   const t = translations[currentLanguage];
   document.getElementById("title").textContent = t.title;
-  document.getElementById("subtitle").textContent = t.subtitle;
   document.getElementById("newShipName").placeholder = t.placeholder;
   document.getElementById("add-btn").textContent = t.addShip;
   document.getElementById("reset-btn").textContent = t.resetDefault;
@@ -84,8 +77,6 @@ function updateUIText() {
   document.getElementById("filters-label").textContent = t.filtersLabel;
   document.getElementById("roster-label").textContent = t.rosterLabel;
   document.getElementById("add-label").textContent = t.addLabel;
-  document.getElementById("status-text").textContent = t.statusText;
-  document.getElementById("classification-text").textContent = t.classificationText;
   updateRosterCount();
   // Reset result to standby on language change
   const r = document.getElementById("result");
