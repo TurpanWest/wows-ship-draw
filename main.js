@@ -15,6 +15,7 @@ const translations = {
     filtersLabel: "FILTERS",
     rosterLabel: "FLEET",
     addLabel: "ADD TO FLEET",
+    historyLabel: "HISTORY",
     countSuffix: "SHIPS",
   },
   zh: {
@@ -31,12 +32,16 @@ const translations = {
     filtersLabel: "筛选",
     rosterLabel: "舰队",
     addLabel: "添加舰船",
+    historyLabel: "历史",
     countSuffix: "艘",
   },
 };
 
+const HISTORY_MAX = 5;
+
 let currentLanguage = localStorage.getItem("language") || "en";
 let ships = [];
+let drawHistory = [];
 
 function initializeShips() {
   const savedShips = localStorage.getItem("shipListV2");
@@ -49,6 +54,54 @@ function initializeShips() {
 
 function saveState() {
   localStorage.setItem("shipListV2", JSON.stringify(ships));
+}
+
+function loadHistory() {
+  const saved = localStorage.getItem("drawHistoryV1");
+  if (!saved) return;
+  try {
+    const parsed = JSON.parse(saved);
+    if (Array.isArray(parsed)) drawHistory = parsed.slice(0, HISTORY_MAX);
+  } catch {
+    drawHistory = [];
+  }
+}
+
+function saveHistory() {
+  localStorage.setItem("drawHistoryV1", JSON.stringify(drawHistory));
+}
+
+function pushHistory(ship) {
+  drawHistory.unshift({ name: ship.name, type: ship.type });
+  if (drawHistory.length > HISTORY_MAX) drawHistory.length = HISTORY_MAX;
+  saveHistory();
+  renderHistory();
+}
+
+function renderHistory() {
+  const section = document.getElementById("history");
+  const list = document.getElementById("history-list");
+  const count = document.getElementById("history-count");
+  if (!drawHistory.length) {
+    section.hidden = true;
+    list.innerHTML = "";
+    return;
+  }
+  section.hidden = false;
+  count.textContent = drawHistory.length + " / " + HISTORY_MAX;
+  list.innerHTML = "";
+  drawHistory.forEach((entry, idx) => {
+    const li = document.createElement("li");
+    li.innerHTML =
+      "<span class='history__index'>" +
+      String(idx + 1).padStart(2, "0") +
+      "</span>" +
+      "<span class='history__name'>" + escapeHTML(entry.name) + "</span>" +
+      "<span class='type-label' data-type='" + escapeHTML(entry.type) + "'>" +
+      escapeHTML(entry.type) +
+      "</span>";
+    list.appendChild(li);
+  });
 }
 
 function switchLanguage(lang) {
@@ -77,6 +130,7 @@ function updateUIText() {
   document.getElementById("filters-label").textContent = t.filtersLabel;
   document.getElementById("roster-label").textContent = t.rosterLabel;
   document.getElementById("add-label").textContent = t.addLabel;
+  document.getElementById("history-label").textContent = t.historyLabel;
   updateRosterCount();
   // Reset result to standby on language change
   const r = document.getElementById("result");
@@ -167,11 +221,14 @@ function drawShip() {
     .replace("{name}", chosen.name)
     .replace("{type}", chosen.type);
   resultDiv.dataset.drawn = "1";
+  pushHistory(chosen);
 }
 
 initializeShips();
+loadHistory();
 switchLanguage(currentLanguage);
 renderList();
+renderHistory();
 
 window.switchLanguage = switchLanguage;
 window.addShip = addShip;
