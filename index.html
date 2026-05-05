@@ -52,6 +52,47 @@
                 >
             </section>
 
+            <section id="mode">
+                <span class="section-label" id="mode-label">MODE</span>
+                <div class="mode-group">
+                    <button
+                        class="mode-btn active"
+                        id="goal-any"
+                        onclick="setGoal(null)"
+                    >
+                        ALL
+                    </button>
+                    <button
+                        class="mode-btn"
+                        id="goal-winning"
+                        onclick="setGoal('winning')"
+                    >
+                        WIN
+                    </button>
+                    <button
+                        class="mode-btn"
+                        id="goal-easy"
+                        onclick="setGoal('easy')"
+                    >
+                        OP
+                    </button>
+                    <button
+                        class="mode-btn"
+                        id="goal-fun"
+                        onclick="setGoal('fun')"
+                    >
+                        FUN
+                    </button>
+                    <button
+                        class="mode-btn"
+                        id="goal-trash"
+                        onclick="setGoal('trash')"
+                    >
+                        TRASH
+                    </button>
+                </div>
+            </section>
+
             <section class="roster">
                 <div class="section-head">
                     <span class="section-label" id="roster-label">FLEET</span>

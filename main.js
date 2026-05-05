@@ -17,6 +17,12 @@ const translations = {
     addLabel: "ADD TO FLEET",
     historyLabel: "HISTORY",
     countSuffix: "SHIPS",
+    modeLabel: "MODE",
+    goalAny: "ALL",
+    goalWin: "WIN",
+    goalEasy: "OP",
+    goalFun: "FUN",
+    goalTrash: "TRASH",
   },
   zh: {
     title: "舰船抽选器",
@@ -34,8 +40,16 @@ const translations = {
     addLabel: "添加舰船",
     historyLabel: "历史",
     countSuffix: "艘",
+    modeLabel: "模式",
+    goalAny: "全部",
+    goalWin: "想赢",
+    goalEasy: "轮椅",
+    goalFun: "开心",
+    goalTrash: "烂船",
   },
 };
+
+const GOAL_TAGS = ["winning", "easy", "fun", "trash"];
 
 const HISTORY_MAX = 5;
 
@@ -61,6 +75,8 @@ function translateName(name, toLang) {
 }
 
 let currentLanguage = localStorage.getItem("language") || "en";
+let currentGoal = localStorage.getItem("goalV1");
+if (!GOAL_TAGS.includes(currentGoal)) currentGoal = null;
 let ships = [];
 let drawHistory = [];
 let lastDrawn = null;
@@ -69,6 +85,15 @@ function initializeShips() {
   const savedShips = localStorage.getItem("shipListV2");
   if (savedShips) {
     ships = JSON.parse(savedShips);
+    // Backfill tags for rosters saved before tags existed.
+    // Custom user-added ships won't be found and remain tagless.
+    const tagByName = Object.create(null);
+    SHIPS_DATA[currentLanguage].forEach((s) => {
+      if (s.tags) tagByName[s.name] = s.tags;
+    });
+    ships.forEach((s) => {
+      if (!s.tags && tagByName[s.name]) s.tags = tagByName[s.name];
+    });
   } else {
     ships = SHIPS_DATA[currentLanguage].slice();
   }
@@ -133,7 +158,7 @@ function switchLanguage(lang) {
   document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
 
   if (lang !== previousLang) {
-    ships = ships.map((s) => ({ name: translateName(s.name, lang), type: s.type }));
+    ships = ships.map((s) => ({ name: translateName(s.name, lang), type: s.type, tags: s.tags }));
     drawHistory = drawHistory.map((h) => ({ name: translateName(h.name, lang), type: h.type }));
     if (lastDrawn) lastDrawn.name = translateName(lastDrawn.name, lang);
     saveState();
@@ -175,7 +200,28 @@ function updateUIText() {
   document.getElementById("roster-label").textContent = t.rosterLabel;
   document.getElementById("add-label").textContent = t.addLabel;
   document.getElementById("history-label").textContent = t.historyLabel;
+  document.getElementById("mode-label").textContent = t.modeLabel;
+  document.getElementById("goal-any").textContent = t.goalAny;
+  document.getElementById("goal-winning").textContent = t.goalWin;
+  document.getElementById("goal-easy").textContent = t.goalEasy;
+  document.getElementById("goal-fun").textContent = t.goalFun;
+  document.getElementById("goal-trash").textContent = t.goalTrash;
   updateRosterCount();
+}
+
+function setGoal(goal) {
+  currentGoal = GOAL_TAGS.includes(goal) ? goal : null;
+  if (currentGoal) localStorage.setItem("goalV1", currentGoal);
+  else localStorage.removeItem("goalV1");
+  updateGoalButtons();
+}
+
+function updateGoalButtons() {
+  const ids = { any: null, winning: "winning", easy: "easy", fun: "fun", trash: "trash" };
+  for (const key in ids) {
+    const el = document.getElementById("goal-" + key);
+    if (el) el.classList.toggle("active", currentGoal === ids[key]);
+  }
 }
 
 function updateRosterCount() {
@@ -240,6 +286,7 @@ function drawShip() {
   const selected = ships.filter((ship, idx) => {
     if (excludeCV && ship.type === "CV") return false;
     if (excludeSS && ship.type === "SS") return false;
+    if (currentGoal && !(ship.tags && ship.tags.includes(currentGoal))) return false;
     return document.getElementById("ship-" + idx)?.checked;
   });
   const resultDiv = document.getElementById("result");
@@ -265,6 +312,7 @@ function drawShip() {
 initializeShips();
 loadHistory();
 switchLanguage(currentLanguage);
+updateGoalButtons();
 renderList();
 renderHistory();
 
@@ -273,3 +321,4 @@ window.addShip = addShip;
 window.removeShip = removeShip;
 window.resetToDefault = resetToDefault;
 window.drawShip = drawShip;
+window.setGoal = setGoal;
