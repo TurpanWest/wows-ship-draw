@@ -388,6 +388,7 @@ input[type="checkbox"]:checked::after {
     font-family: "Big Shoulders Stencil Text", "IBM Plex Sans", sans-serif;
     font-weight: 800;
     font-size: clamp(1.4rem, 4vw, 1.7rem);
+    line-height: 1.2;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--paper);
