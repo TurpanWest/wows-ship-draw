@@ -229,6 +229,91 @@ body {
     user-select: none;
 }
 
+/* ─── Tier filter (matches FILTERS bar style) ───────────────── */
+#tier-filter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px dashed var(--ink-2);
+    margin-bottom: 1.25rem;
+}
+#tier-filter .section-label { margin-right: 0.25rem; }
+
+.tier-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+    align-items: center;
+}
+.tier-checkboxes label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    user-select: none;
+    color: var(--ink);
+}
+
+/* ─── Nation filter (chip group) ─────────────────────────────── */
+#nation-filter {
+    padding: 0.7rem 0.9rem;
+    border: 1px dashed var(--ink-2);
+    margin-bottom: 1.25rem;
+}
+#nation-filter .section-head { margin-bottom: 0.55rem; }
+#nation-filter .section-label { margin-right: 0.25rem; }
+
+.nation-actions {
+    display: inline-flex;
+    gap: 0.4rem;
+}
+.nation-action {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.55rem;
+    background: var(--paper);
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    border-radius: 0;
+    cursor: pointer;
+    transition: background 120ms ease, color 120ms ease;
+}
+.nation-action:hover { background: var(--ink); color: var(--paper); }
+
+.chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+.nation-chip {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.65rem;
+    background: var(--paper);
+    color: var(--ink-soft);
+    border: 1.5px solid var(--ink-2);
+    border-radius: 0;
+    cursor: pointer;
+    transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+.nation-chip:hover { background: var(--hover-tint); }
+.nation-chip.active {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+}
+
 /* ─── Mode (intent picker) ───────────────────────────────────── */
 #mode {
     display: flex;
@@ -298,7 +383,7 @@ input[type="checkbox"]:checked::after {
 #ship-list {
     border: 1.5px solid var(--ink);
     background: var(--paper);
-    max-height: 320px;
+    max-height: 480px;
     overflow-y: auto;
     width: 100%;
     max-width: none;
@@ -311,6 +396,68 @@ input[type="checkbox"]:checked::after {
 #ship-list::-webkit-scrollbar { width: 8px; }
 #ship-list::-webkit-scrollbar-track { background: var(--paper-2); }
 #ship-list::-webkit-scrollbar-thumb { background: var(--ink); }
+
+/* tier accordion */
+.tier-group {
+    border-bottom: 1.5px solid var(--ink);
+}
+.tier-group:last-child { border-bottom: none; }
+
+.tier-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 0.9rem;
+    background: var(--paper-2);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    transition: background 120ms ease;
+}
+.tier-head::-webkit-details-marker { display: none; }
+.tier-head::before {
+    content: "▸";
+    display: inline-block;
+    margin-right: 0.55rem;
+    transition: transform 120ms ease;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+}
+.tier-group[open] > .tier-head::before { transform: rotate(90deg); }
+.tier-head:hover { background: var(--hover-tint); }
+.tier-name { flex: 1; font-size: 0.85rem; }
+.tier-count {
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.14em;
+}
+
+/* nation subgroup */
+.nation-group + .nation-group { border-top: 1px solid var(--rule-faint); }
+
+.nation-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.35rem 0.9rem;
+    background: var(--paper);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule-faint);
+}
+.nation-head-name { flex: 1; }
+.nation-head-count { color: var(--ink-soft); }
+
+.ship-rows { display: block; }
 
 .ship-item {
     display: flex;
@@ -497,11 +644,22 @@ html[lang^="zh"] #result::before { content: "抽取结果"; }
 .add .section-label { display: block; margin-bottom: 0.5rem; }
 
 .input-row {
-    display: grid;
-    grid-template-columns: 1fr 88px auto auto;
+    display: flex;
+    flex-direction: column;
     gap: 0.5rem;
     margin: 0;
 }
+.input-row > input[type="text"] { width: 100%; }
+.input-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: stretch;
+}
+.input-controls > select { min-width: 70px; }
+.input-controls > #newShipNation { min-width: 110px; }
+.input-controls > .add-btn,
+.input-controls > .reset-btn { flex: 0 0 auto; }
 
 input[type="text"], select {
     font-family: "IBM Plex Sans", sans-serif;
@@ -584,10 +742,11 @@ select {
         box-shadow: 4px 4px 0 var(--ink);
     }
     .sheet__title { font-size: 2.2rem; }
-    .input-row { grid-template-columns: 1fr 1fr; }
-    .input-row > input[type="text"] { grid-column: 1 / -1; }
     .draw-btn { font-size: 1.25rem; padding: 0.85rem 1rem; }
     #filters { gap: 0.85rem; }
+    .input-controls > select { flex: 1 1 calc(50% - 0.25rem); }
+    .input-controls > .add-btn,
+    .input-controls > .reset-btn { flex: 1 1 calc(50% - 0.25rem); }
 }
 
 @media (prefers-reduced-motion: reduce) {

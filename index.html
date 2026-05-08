@@ -70,6 +70,34 @@
                 >
             </section>
 
+            <section id="tier-filter">
+                <span class="section-label" id="tier-label">TIER</span>
+                <div id="tier-checkboxes" class="tier-checkboxes"></div>
+            </section>
+
+            <section id="nation-filter">
+                <div class="section-head">
+                    <span class="section-label" id="nation-label">NATION</span>
+                    <span class="nation-actions">
+                        <button
+                            type="button"
+                            class="nation-action"
+                            id="nation-all"
+                        >
+                            ALL
+                        </button>
+                        <button
+                            type="button"
+                            class="nation-action"
+                            id="nation-none"
+                        >
+                            NONE
+                        </button>
+                    </span>
+                </div>
+                <div id="nation-chips" class="chip-group"></div>
+            </section>
+
             <section id="mode">
                 <span class="section-label" id="mode-label">MODE</span>
                 <div class="mode-group">
@@ -141,27 +169,36 @@
                         id="newShipName"
                         placeholder="Ship Name"
                     />
-                    <select id="newShipType">
-                        <option value="DD">DD</option>
-                        <option value="CA">CA</option>
-                        <option value="BB">BB</option>
-                        <option value="CV">CV</option>
-                        <option value="SS">SS</option>
-                    </select>
-                    <button
-                        class="add-btn"
-                        onclick="addShip()"
-                        id="add-btn"
-                    >
-                        Add
-                    </button>
-                    <button
-                        class="reset-btn"
-                        onclick="resetToDefault()"
-                        id="reset-btn"
-                    >
-                        Reset
-                    </button>
+                    <div class="input-controls">
+                        <select id="newShipType">
+                            <option value="DD">DD</option>
+                            <option value="CA">CA</option>
+                            <option value="BB">BB</option>
+                            <option value="CV">CV</option>
+                            <option value="SS">SS</option>
+                        </select>
+                        <select id="newShipTier">
+                            <option value="8">VIII</option>
+                            <option value="9">IX</option>
+                            <option value="10" selected>X</option>
+                            <option value="11">XI</option>
+                        </select>
+                        <select id="newShipNation"></select>
+                        <button
+                            class="add-btn"
+                            onclick="addShip()"
+                            id="add-btn"
+                        >
+                            Add
+                        </button>
+                        <button
+                            class="reset-btn"
+                            onclick="resetToDefault()"
+                            id="reset-btn"
+                        >
+                            Reset
+                        </button>
+                    </div>
                 </div>
             </section>
         </main>
