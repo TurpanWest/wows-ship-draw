@@ -75,6 +75,19 @@ function translateName(name, toLang) {
 }
 
 let currentLanguage = localStorage.getItem("language") || "en";
+let currentTheme = localStorage.getItem("theme") === "dark" ? "dark" : "light";
+
+function applyTheme(theme) {
+  currentTheme = theme === "dark" ? "dark" : "light";
+  document.documentElement.dataset.theme = currentTheme;
+  localStorage.setItem("theme", currentTheme);
+  const icon = document.getElementById("theme-icon");
+  if (icon) icon.textContent = currentTheme === "dark" ? "☀" : "☾";
+}
+
+function toggleTheme() {
+  applyTheme(currentTheme === "dark" ? "light" : "dark");
+}
 let currentGoal = localStorage.getItem("goalV1");
 if (!GOAL_TAGS.includes(currentGoal)) currentGoal = null;
 let ships = [];
@@ -311,6 +324,7 @@ function drawShip() {
 
 initializeShips();
 loadHistory();
+applyTheme(currentTheme);
 switchLanguage(currentLanguage);
 updateGoalButtons();
 renderList();
@@ -322,3 +336,4 @@ window.removeShip = removeShip;
 window.resetToDefault = resetToDefault;
 window.drawShip = drawShip;
 window.setGoal = setGoal;
+window.toggleTheme = toggleTheme;

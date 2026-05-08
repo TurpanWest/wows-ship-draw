@@ -18,6 +18,29 @@
     --brass:      #a07728;
     --olive:      #4f5a2a;
     --rule-faint: rgba(13, 26, 36, 0.12);
+    --grid-line:  rgba(13, 26, 36, 0.035);
+    --row-tint:   rgba(13, 26, 36, 0.025);
+    --hover-tint: rgba(13, 26, 36, 0.07);
+    --select-arrow: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%230d1a24' stroke-width='1.5' fill='none' stroke-linecap='square'/%3E%3C/svg%3E");
+}
+
+[data-theme="dark"] {
+    --paper:      #0e1a24;
+    --paper-2:    #162533;
+    --paper-hi:   #1c2c3c;
+    --ink:        #ece4cf;
+    --ink-2:      #c8bfa3;
+    --ink-soft:   #8b99a8;
+    --signal:     #e04a57;
+    --signal-2:   #b6232f;
+    --sea:        #3a8499;
+    --brass:      #c89c4a;
+    --olive:      #8a9b48;
+    --rule-faint: rgba(236, 228, 207, 0.16);
+    --grid-line:  rgba(236, 228, 207, 0.045);
+    --row-tint:   rgba(236, 228, 207, 0.035);
+    --hover-tint: rgba(236, 228, 207, 0.09);
+    --select-arrow: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23ece4cf' stroke-width='1.5' fill='none' stroke-linecap='square'/%3E%3C/svg%3E");
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -38,20 +61,44 @@ body {
     color: var(--ink);
     background-color: var(--paper);
     background-image:
-        repeating-linear-gradient(0deg,  rgba(13,26,36,0.035) 0 1px, transparent 1px 28px),
-        repeating-linear-gradient(90deg, rgba(13,26,36,0.035) 0 1px, transparent 1px 28px);
+        repeating-linear-gradient(0deg,  var(--grid-line) 0 1px, transparent 1px 28px),
+        repeating-linear-gradient(90deg, var(--grid-line) 0 1px, transparent 1px 28px);
     background-attachment: fixed;
+    transition: background-color 200ms ease, color 200ms ease;
 }
 
-/* ─── Language switcher (top-right toggle) ───────────────────── */
-.language-switcher {
+/* ─── Top-right controls (theme + language) ──────────────────── */
+.top-controls {
     position: absolute;
     top: 1.25rem;
     right: 1.25rem;
     display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+}
+
+.theme-toggle {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.95rem;
+    line-height: 1;
+    width: 2.05rem;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    border-radius: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 120ms ease, color 120ms ease;
+}
+.theme-toggle:hover { background: var(--ink); color: var(--paper); }
+
+.language-switcher {
+    display: flex;
     border: 1.5px solid var(--ink);
     background: var(--paper);
-    z-index: 10;
 }
 .lang-btn {
     font-family: "IBM Plex Mono", monospace;
@@ -68,7 +115,7 @@ body {
     transition: background 120ms ease, color 120ms ease;
 }
 .lang-btn + .lang-btn { border-left: 1.5px solid var(--ink); }
-.lang-btn:hover { background: rgba(13, 26, 36, 0.07); }
+.lang-btn:hover { background: var(--hover-tint); }
 .lang-btn.active { background: var(--ink); color: var(--paper); }
 
 /* ─── Sheet (the document) ───────────────────────────────────── */
@@ -215,7 +262,7 @@ body {
     transition: background 120ms ease, color 120ms ease;
 }
 .mode-btn + .mode-btn { border-left: 1.5px solid var(--ink); }
-.mode-btn:hover { background: rgba(13, 26, 36, 0.07); }
+.mode-btn:hover { background: var(--hover-tint); }
 .mode-btn.active { background: var(--ink); color: var(--paper); }
 
 /* ─── Custom checkbox (stamped marker) ───────────────────────── */
@@ -276,7 +323,7 @@ input[type="checkbox"]:checked::after {
     animation: rosterFadeIn 220ms ease-out both;
 }
 .ship-item:last-child { border-bottom: none; }
-.ship-item:nth-child(even) { background: rgba(13, 26, 36, 0.025); }
+.ship-item:nth-child(even) { background: var(--row-tint); }
 
 .ship-left {
     display: flex;
@@ -418,7 +465,7 @@ html[lang^="zh"] #result::before { content: "抽取结果"; }
     color: var(--ink);
 }
 #history-list li:last-child { border-bottom: none; }
-#history-list li:nth-child(even) { background: rgba(13, 26, 36, 0.025); }
+#history-list li:nth-child(even) { background: var(--row-tint); }
 #history-list li:first-child {
     animation: historySlide 240ms cubic-bezier(0.2, 0.8, 0.3, 1) both;
 }
@@ -484,7 +531,7 @@ select {
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%230d1a24' stroke-width='1.5' fill='none' stroke-linecap='square'/%3E%3C/svg%3E");
+    background-image: var(--select-arrow);
     background-repeat: no-repeat;
     background-position: right 0.6rem center;
     background-size: 10px;
@@ -526,7 +573,7 @@ select {
 /* ─── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 600px) {
     body { padding: 1rem 0.75rem 2.5rem; }
-    .language-switcher {
+    .top-controls {
         position: static;
         align-self: flex-end;
         margin-bottom: 0.75rem;

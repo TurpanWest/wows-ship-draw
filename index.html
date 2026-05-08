@@ -11,23 +11,41 @@
         />
         <link rel="stylesheet" href="style.css" />
         <title>Ship Drawer · Fleet Manifest</title>
+        <script>
+            try {
+                if (localStorage.getItem("theme") === "dark") {
+                    document.documentElement.dataset.theme = "dark";
+                }
+            } catch (e) {}
+        </script>
     </head>
     <body>
-        <div class="language-switcher">
+        <div class="top-controls">
             <button
-                class="lang-btn"
-                onclick="switchLanguage('en')"
-                id="lang-en"
+                class="theme-toggle"
+                id="theme-toggle"
+                onclick="toggleTheme()"
+                aria-label="Toggle dark mode"
+                title="Toggle dark mode"
             >
-                EN
+                <span id="theme-icon">☾</span>
             </button>
-            <button
-                class="lang-btn"
-                onclick="switchLanguage('zh')"
-                id="lang-zh"
-            >
-                中文
-            </button>
+            <div class="language-switcher">
+                <button
+                    class="lang-btn"
+                    onclick="switchLanguage('en')"
+                    id="lang-en"
+                >
+                    EN
+                </button>
+                <button
+                    class="lang-btn"
+                    onclick="switchLanguage('zh')"
+                    id="lang-zh"
+                >
+                    中文
+                </button>
+            </div>
         </div>
 
         <main class="sheet">
