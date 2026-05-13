@@ -217,6 +217,14 @@ function initializeShips() {
     if (!s.nation && m.nation) s.nation = m.nation;
     if (!s.tags && m.tags) s.tags = m.tags;
   });
+
+  // Merge any new ships from SHIPS_DATA that aren't in the saved list.
+  const existingNames = new Set(ships.map((s) => s.name));
+  SHIPS_DATA[currentLanguage].forEach((s) => {
+    if (!existingNames.has(s.name)) {
+      ships.push({ ...s });
+    }
+  });
 }
 
 function saveState() {
