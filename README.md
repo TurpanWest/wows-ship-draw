@@ -2,6 +2,10 @@
   <img src="assets/wows_ship_draw.png" alt="WoWS Ship Draw Logo" width="400">
 </p>
 
+<p align="center">
+  <b>English</b> | <a href="README.zh.md">中文</a>
+</p>
+
 # WoWs Ship Draw
 
 This web tool is designed for World of Warships players who suffer from choice paralysis — if you're staring at your port full of ships and can't decide which one to play today, just draw one randomly!
