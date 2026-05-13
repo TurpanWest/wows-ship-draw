@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="wows_ship_draw.png" alt="WoWS Ship Draw Logo" width="200">
+</p>
+
 # World of Warships Ship Drawer
 
 This web tool is designed for World of Warships players who suffer from choice paralysis — if you're staring at your port full of ships and can't decide which one to play today, just draw one randomly!
