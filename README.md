@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="wows_ship_draw.png" alt="WoWS Ship Draw Logo" width="200">
+  <img src="assets/wows_ship_draw.png" alt="WoWS Ship Draw Logo" width="200">
 </p>
 
 # World of Warships Ship Drawer
