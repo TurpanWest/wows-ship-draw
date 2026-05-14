@@ -3,6 +3,25 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Random ship picker for World of Warships. Draw a random ship from your fleet, filter by ship type, and track your draw history. Supports DD, CA, BB, CV, SS classes." />
+        <meta name="keywords" content="World of Warships, WoWS, ship randomizer, ship picker, fleet manager, warship game" />
+        
+        <!-- Open Graph -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://wows-ship-draw.vercel.app/" />
+        <meta property="og:title" content="Ship Drawer · Fleet Manifest" />
+        <meta property="og:description" content="Random ship picker for World of Warships. Draw a random ship from your fleet, filter by ship type, and track your draw history." />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:locale:alternate" content="zh_CN" />
+        
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Ship Drawer · Fleet Manifest" />
+        <meta name="twitter:description" content="Random ship picker for World of Warships. Draw a random ship from your fleet." />
+        
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://wows-ship-draw.vercel.app/" />
+        
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
             rel="preconnect"
@@ -20,7 +39,7 @@
         </script>
     </head>
     <body>
-        <div class="top-controls">
+        <nav class="top-controls" aria-label="Settings">
             <button
                 class="theme-toggle"
                 id="theme-toggle"
@@ -30,11 +49,12 @@
             >
                 <span id="theme-icon">☾</span>
             </button>
-            <div class="language-switcher">
+            <div class="language-switcher" role="group" aria-label="Language selection">
                 <button
                     class="lang-btn"
                     onclick="switchLanguage('en')"
                     id="lang-en"
+                    aria-label="Switch to English"
                 >
                     EN
                 </button>
@@ -42,11 +62,12 @@
                     class="lang-btn"
                     onclick="switchLanguage('zh')"
                     id="lang-zh"
+                    aria-label="切换到中文"
                 >
                     中文
                 </button>
             </div>
-        </div>
+        </nav>
 
         <main class="sheet">
             <header class="sheet__head">

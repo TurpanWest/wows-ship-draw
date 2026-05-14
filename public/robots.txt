@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wows-ship-draw.vercel.app/sitemap.xml
