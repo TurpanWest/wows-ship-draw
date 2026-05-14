@@ -1,5 +1,9 @@
 <p align="center">
-  <img src="assets/wows_ship_draw.png" alt="WoWS Ship Draw Logo" width="400">
+  <img src="https://raw.githubusercontent.com/TurpanWest/wows-ship-draw/main/assets/wows_ship_draw.png" alt="WoWS Ship Draw Logo" width="400">
+</p>
+
+<p align="center">
+  <b>English</b> | <a href="README.zh.md">中文</a>
 </p>
 
 # WoWs Ship Draw
