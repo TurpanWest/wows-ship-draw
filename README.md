@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/wows_ship_draw.png" alt="WoWS Ship Draw Logo" width="400">
+  <img src="https://raw.githubusercontent.com/TurpanWest/wows-ship-draw/main/assets/wows_ship_draw.png" alt="WoWS Ship Draw Logo" width="400">
 </p>
 
 <p align="center">
