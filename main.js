@@ -615,7 +615,13 @@ loadFilterState();
 initializeShips();
 loadHistory();
 applyTheme(currentTheme);
-initTierFilter();
+// Tier data is T10-only for now; hide the tier filter in production builds
+// until T8/T9/T11 rosters land. Dev keeps it visible for ongoing work.
+if (import.meta.env.PROD) {
+  document.getElementById("tier-filter").hidden = true;
+} else {
+  initTierFilter();
+}
 renderNationChips();
 renderNationAddOptions();
 document.getElementById("nation-all").addEventListener("click", () => setAllNations(true));
