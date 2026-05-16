@@ -482,7 +482,7 @@ export const SHIPS_DATA = {
     { name: "Saint-Louis", type: "CA", tier: 9, nation: "France" },
     { name: "Mogador", type: "DD", tier: 9, nation: "France" },
     { name: "Scarlet Thunder", type: "BB", tier: 9, nation: "UK" },
-    { name: "Lightning 52", type: "DD", tier: 9, nation: "Europe" },
+    { name: "Błyskawica 52", type: "DD", tier: 9, nation: "Europe" },
     { name: "Njord", type: "BB", tier: 9, nation: "Europe" },
     { name: "Dmitri Donskoi", type: "CA", tier: 9, nation: "USSR" },
     { name: "Roussillon", type: "BB", tier: 9, nation: "France" },
