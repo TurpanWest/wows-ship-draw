@@ -730,6 +730,51 @@ select {
 }
 
 /* ─── Responsive ─────────────────────────────────────────────── */
+
+/* Desktop: three-column manifest layout
+   ── filters · roster · draw/result ───────────────────────────── */
+@media (min-width: 1024px) {
+    body {
+        padding: clamp(1.5rem, 4vw, 3rem) 1.5rem 3rem;
+    }
+
+    .sheet {
+        max-width: 1280px;
+        padding: 2.5rem 2.25rem 2rem;
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr) 320px;
+        column-gap: 1.75rem;
+        row-gap: 1.1rem;
+        grid-template-areas:
+            "head    head    head"
+            "filters roster  draw"
+            "tier    roster  result"
+            "nation  roster  history"
+            "mode    roster  history"
+            ".       add     history";
+        align-items: start;
+    }
+
+    .sheet__head    { grid-area: head;    margin-bottom: 0.5rem; }
+    #filters        { grid-area: filters; margin-bottom: 0; }
+    #tier-filter    { grid-area: tier;    margin-bottom: 0; }
+    #nation-filter  { grid-area: nation;  margin-bottom: 0; }
+    #mode           { grid-area: mode;    margin-bottom: 0; }
+    .roster         { grid-area: roster;  margin-bottom: 0; }
+    .add            { grid-area: add;     margin-top: 0; }
+    .draw-btn       { grid-area: draw;    margin: 0; }
+    #result         { grid-area: result;  margin: 0; }
+    .history        { grid-area: history; margin-bottom: 0; }
+
+    /* Cap the fleet list to its own viewport-relative scroll area so it
+       never stretches the sheet past the first screen. ~26rem accounts for
+       header + add section + sheet/body padding chrome above and below. */
+    #ship-list {
+        max-height: calc(100vh - 26rem);
+        min-height: 240px;
+    }
+}
+
 @media (max-width: 600px) {
     body { padding: 1rem 0.75rem 2.5rem; }
     .top-controls {
