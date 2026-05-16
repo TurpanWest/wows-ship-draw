@@ -30,19 +30,19 @@ const translations = {
     goalTrash: "TRASH",
     tierShort: { 8: "VIII", 9: "IX", 10: "X", 11: "XI" },
     nations: {
-      "USA": "USA",
-      "USSR": "USSR",
-      "Germany": "Germany",
-      "Japan": "Japan",
-      "UK": "UK",
-      "France": "France",
-      "Italy": "Italy",
-      "Pan-Asia": "Pan-Asia",
-      "Pan-America": "Pan-America",
-      "Commonwealth": "Commonwealth",
-      "Europe": "Europe",
-      "Netherlands": "Netherlands",
-      "Spain": "Spain",
+      "美国": "USA",
+      "苏联": "USSR",
+      "德国": "Germany",
+      "日本": "Japan",
+      "英国": "UK",
+      "法国": "France",
+      "意大利": "Italy",
+      "泛亚": "Pan-Asia",
+      "泛美": "Pan-America",
+      "英联邦": "Commonwealth",
+      "泛欧": "Europe",
+      "荷兰": "Netherlands",
+      "西班牙": "Spain",
     },
   },
   zh: {
@@ -74,21 +74,39 @@ const translations = {
     goalTrash: "烂船",
     tierShort: { 8: "VIII", 9: "IX", 10: "X", 11: "XI" },
     nations: {
-      "USA": "美国",
-      "USSR": "苏联",
-      "Germany": "德国",
-      "Japan": "日本",
-      "UK": "英国",
-      "France": "法国",
-      "Italy": "意大利",
-      "Pan-Asia": "泛亚",
-      "Pan-America": "泛美",
-      "Commonwealth": "英联邦",
-      "Europe": "泛欧",
-      "Netherlands": "荷兰",
-      "Spain": "西班牙",
+      "美国": "美国",
+      "苏联": "苏联",
+      "德国": "德国",
+      "日本": "日本",
+      "英国": "英国",
+      "法国": "法国",
+      "意大利": "意大利",
+      "泛亚": "泛亚",
+      "泛美": "泛美",
+      "英联邦": "英联邦",
+      "泛欧": "泛欧",
+      "荷兰": "荷兰",
+      "西班牙": "西班牙",
     },
   },
+};
+
+// Legacy English nation codes — used to migrate older localStorage entries
+// (shipListV3, nationFilterV1) where nation was stored in English.
+const NATION_EN_TO_ZH = {
+  "USA": "美国",
+  "USSR": "苏联",
+  "Germany": "德国",
+  "Japan": "日本",
+  "UK": "英国",
+  "France": "法国",
+  "Italy": "意大利",
+  "Pan-Asia": "泛亚",
+  "Pan-America": "泛美",
+  "Commonwealth": "英联邦",
+  "Europe": "泛欧",
+  "Netherlands": "荷兰",
+  "Spain": "西班牙",
 };
 
 const GOAL_TAGS = ["winning", "easy", "fun", "trash"];
@@ -163,7 +181,10 @@ function loadFilterState() {
   } catch {}
   try {
     const n = JSON.parse(localStorage.getItem("nationFilterV1"));
-    if (Array.isArray(n)) nationFilter = new Set(n.filter((x) => NATIONS.includes(x)));
+    if (Array.isArray(n)) {
+      const migrated = n.map((x) => NATION_EN_TO_ZH[x] || x);
+      nationFilter = new Set(migrated.filter((x) => NATIONS.includes(x)));
+    }
   } catch {}
 }
 
@@ -173,19 +194,22 @@ function saveFilterState() {
 }
 
 function initializeShips() {
-  // v3 introduces tier + nation. Migrate v2 by looking up defaults.
-  const v3 = localStorage.getItem("shipListV3");
-  if (v3) {
+  // v4 stores nation in Chinese (canonical). v3 stored nation in English; v2
+  // predates nation/tier entirely.
+  const v4 = localStorage.getItem("shipListV4");
+  if (v4) {
     try {
-      ships = JSON.parse(v3);
+      ships = JSON.parse(v4);
     } catch {
       ships = SHIPS_DATA[currentLanguage].slice();
     }
   } else {
+    const v3 = localStorage.getItem("shipListV3");
     const v2 = localStorage.getItem("shipListV2");
-    if (v2) {
+    const raw = v3 || v2;
+    if (raw) {
       let parsed = [];
-      try { parsed = JSON.parse(v2); } catch {}
+      try { parsed = JSON.parse(raw); } catch {}
       const meta = Object.create(null);
       SHIPS_DATA[currentLanguage].forEach((s) => {
         meta[s.name] = { tier: s.tier, nation: s.nation, tags: s.tags };
@@ -194,10 +218,15 @@ function initializeShips() {
         name: s.name,
         type: s.type,
         tier: s.tier ?? meta[s.name]?.tier ?? 10,
-        nation: s.nation ?? meta[s.name]?.nation ?? UNKNOWN_NATION,
+        nation:
+          NATION_EN_TO_ZH[s.nation] ||
+          s.nation ||
+          meta[s.name]?.nation ||
+          UNKNOWN_NATION,
         tags: s.tags ?? meta[s.name]?.tags,
       }));
-      localStorage.setItem("shipListV3", JSON.stringify(ships));
+      localStorage.setItem("shipListV4", JSON.stringify(ships));
+      localStorage.removeItem("shipListV3");
       localStorage.removeItem("shipListV2");
     } else {
       ships = SHIPS_DATA[currentLanguage].slice();
@@ -228,7 +257,7 @@ function initializeShips() {
 }
 
 function saveState() {
-  localStorage.setItem("shipListV3", JSON.stringify(ships));
+  localStorage.setItem("shipListV4", JSON.stringify(ships));
 }
 
 function loadHistory() {
