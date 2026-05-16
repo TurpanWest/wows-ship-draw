@@ -564,7 +564,7 @@ export const SHIPS_DATA = {
     { name: "Ferrante Gonzaga", type: "CA", tier: 9, nation: "Italy" },
     { name: "Alaska", type: "CA", tier: 9, nation: "USA" },
     { name: "Jean Bart", type: "BB", tier: 9, nation: "France" },
-    { name: "Ōyama", type: "BB", tier: 9, nation: "Japan" },
+    { name: "Daisen", type: "BB", tier: 9, nation: "Japan" },
     { name: "Illinois", type: "BB", tier: 9, nation: "USA" },
     { name: "Kearsarge", type: "BB", tier: 9, nation: "USA" },
     { name: "Johan de Witt", type: "CA", tier: 9, nation: "Netherlands" },
