@@ -576,7 +576,7 @@ export const SHIPS_DATA = {
     { name: "Neptune", type: "CA", tier: 9, nation: "UK" },
     { name: "Kronshtadt", type: "CA", tier: 9, nation: "USSR" },
     { name: "Giuseppe Verdi", type: "BB", tier: 9, nation: "Italy" },
-    { name: "Tempête", type: "DD", tier: 9, nation: "France" },
+    { name: "Orage", type: "DD", tier: 9, nation: "France" },
     { name: "Lepanto", type: "BB", tier: 9, nation: "Italy" },
     { name: "Tulsa", type: "CA", tier: 9, nation: "USA" },
     { name: "Pommern", type: "BB", tier: 9, nation: "Germany" },
