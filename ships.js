@@ -1988,7 +1988,7 @@ const SHIPS = [
   },
   { zh: "天城", en: "Amagi", type: "BB", tier: 8, nation: "日本" },
   { zh: "厄兰", en: "Öland", type: "DD", tier: 8, nation: "泛欧" },
-  { zh: "强健", en: "Splendid" /* ? */, type: "SS", tier: 8, nation: "英国" },
+  { zh: "强健", en: "Sturdy", type: "SS", tier: 8, nation: "英国" },
   { zh: "U-190", en: "U-190", type: "SS", tier: 8, nation: "德国" },
   {
     zh: "HSF晴风II",
@@ -2108,7 +2108,7 @@ const SHIPS = [
   },
   {
     zh: "那莱",
-    en: "Naresuan" /* ? */,
+    en: "Narai",
     type: "CA",
     tier: 8,
     nation: "泛亚",
@@ -2145,7 +2145,7 @@ const SHIPS = [
     premium: true,
   },
   { zh: "四万十", en: "Shimanto", type: "CA", tier: 8, nation: "日本" },
-  { zh: "冒险家", en: "Aventurier", type: "DD", tier: 8, nation: "法国" },
+  { zh: "冒险家", en: "L'Aventurier", type: "DD", tier: 8, nation: "法国" },
   {
     zh: "香槟",
     en: "Champagne",
