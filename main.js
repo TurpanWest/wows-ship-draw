@@ -8,6 +8,7 @@ const translations = {
     resetDefault: "Reset",
     excludeCV: "Exclude CV",
     excludeSS: "Exclude SS",
+    onlyPremium: "Only Premium",
     drawShip: "Draw a Ship",
     noShipsMessage: "No eligible ships available for drawing",
     drawResult: "{name}\nCLASS · {type}",
@@ -52,6 +53,7 @@ const translations = {
     resetDefault: "重置",
     excludeCV: "不玩 CV",
     excludeSS: "不玩 SS",
+    onlyPremium: "只抽金币船",
     drawShip: "开抽",
     noShipsMessage: "没有符合条件的舰船可供抽选",
     drawResult: "{name}\n舰种 · {type}",
@@ -212,7 +214,7 @@ function initializeShips() {
       try { parsed = JSON.parse(raw); } catch {}
       const meta = Object.create(null);
       SHIPS_DATA[currentLanguage].forEach((s) => {
-        meta[s.name] = { tier: s.tier, nation: s.nation, tags: s.tags };
+        meta[s.name] = { tier: s.tier, nation: s.nation, tags: s.tags, premium: s.premium };
       });
       ships = parsed.map((s) => ({
         name: s.name,
@@ -224,6 +226,7 @@ function initializeShips() {
           meta[s.name]?.nation ||
           UNKNOWN_NATION,
         tags: s.tags ?? meta[s.name]?.tags,
+        premium: s.premium ?? meta[s.name]?.premium,
       }));
       localStorage.setItem("shipListV4", JSON.stringify(ships));
       localStorage.removeItem("shipListV3");
@@ -233,11 +236,11 @@ function initializeShips() {
     }
   }
 
-  // Backfill missing tier/nation/tags from defaults — covers older entries
-  // where one of the fields was absent.
+  // Backfill missing tier/nation/tags/premium from defaults — covers older
+  // entries where one of the fields was absent.
   const meta = Object.create(null);
   SHIPS_DATA[currentLanguage].forEach((s) => {
-    meta[s.name] = { tier: s.tier, nation: s.nation, tags: s.tags };
+    meta[s.name] = { tier: s.tier, nation: s.nation, tags: s.tags, premium: s.premium };
   });
   ships.forEach((s) => {
     const m = meta[s.name];
@@ -245,6 +248,7 @@ function initializeShips() {
     if (s.tier === undefined && m.tier !== undefined) s.tier = m.tier;
     if (!s.nation && m.nation) s.nation = m.nation;
     if (!s.tags && m.tags) s.tags = m.tags;
+    if (s.premium === undefined && m.premium !== undefined) s.premium = m.premium;
   });
 
   // Merge any new ships from SHIPS_DATA that aren't in the saved list.
@@ -321,6 +325,7 @@ function switchLanguage(lang) {
       tier: s.tier,
       nation: s.nation,
       tags: s.tags,
+      premium: s.premium,
     }));
     drawHistory = drawHistory.map((h) => ({ name: translateName(h.name, lang), type: h.type }));
     if (lastDrawn) lastDrawn.name = translateName(lastDrawn.name, lang);
@@ -360,6 +365,7 @@ function updateUIText() {
   document.getElementById("reset-btn").textContent = t.resetDefault;
   document.getElementById("exclude-cv-text").textContent = t.excludeCV;
   document.getElementById("exclude-ss-text").textContent = t.excludeSS;
+  document.getElementById("only-premium-text").textContent = t.onlyPremium;
   document.getElementById("draw-btn").textContent = t.drawShip;
   document.getElementById("filters-label").textContent = t.filtersLabel;
   document.getElementById("tier-label").textContent = t.tierLabel;
@@ -613,9 +619,11 @@ function resetToDefault() {
 function drawShip() {
   const excludeCV = document.getElementById("excludeCV").checked;
   const excludeSS = document.getElementById("excludeSS").checked;
+  const onlyPremium = document.getElementById("onlyPremium").checked;
   const selected = ships.filter((ship, idx) => {
     if (excludeCV && ship.type === "CV") return false;
     if (excludeSS && ship.type === "SS") return false;
+    if (onlyPremium && !ship.premium) return false;
     if (ship.tier !== undefined && !tierFilter.has(ship.tier)) return false;
     if (ship.nation && ship.nation !== UNKNOWN_NATION && !nationFilter.has(ship.nation)) return false;
     if (currentGoal && !(ship.tags && ship.tags.includes(currentGoal))) return false;
