@@ -34,7 +34,7 @@ You can access this tool online via https://wows-ship-draw.vercel.app/.
 ## Future Plans
 
 - [x] Support filtering ships by nation
-- [ ] Populate T8 / T11 ship data *(T9 done)*
-- [ ] Support filtering by premium-vs-tech-tree status
+- [x] Populate T8 / T9 / T11 ship data
+- [x] Support filtering by premium-vs-tech-tree status
 - [ ] Add "Ship Type Weight" feature for players who prefer certain ship types
 - [ ] Add more languages support
