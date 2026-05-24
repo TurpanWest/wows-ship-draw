@@ -2462,7 +2462,7 @@ const SHIPS = [
     en: "Prince of Wales",
     type: "BB",
     tier: 8,
-    nation: "德国",
+    nation: "英国",
     premium: true,
     tags: ["easy"],
   },
