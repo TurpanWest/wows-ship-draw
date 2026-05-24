@@ -95,6 +95,31 @@ body {
 }
 .theme-toggle:hover { background: var(--ink); color: var(--paper); }
 
+.icon-link {
+    width: 2.05rem;
+    height: 2.05rem;
+    background: var(--paper);
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    border-radius: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 120ms ease, color 120ms ease;
+}
+.icon-link:hover { background: var(--ink); color: var(--paper); }
+
+.icon-github {
+    display: inline-block;
+    width: 1.1rem;
+    height: 1.1rem;
+    background-color: currentColor;
+    -webkit-mask: url("/github-svgrepo-com.svg") no-repeat center / contain;
+            mask: url("/github-svgrepo-com.svg") no-repeat center / contain;
+}
+
 .language-switcher {
     display: flex;
     border: 1.5px solid var(--ink);
