@@ -2448,6 +2448,24 @@ const SHIPS = [
     nation: "德国",
     premium: true,
   },
+  {
+    zh: "俾斯麦41",
+    en: "Bismarck 41",
+    type: "BB",
+    tier: 8,
+    nation: "德国",
+    premium: true,
+    tags: ["fun"],
+  },
+  {
+    zh: "威尔士亲王",
+    en: "Prince of Wales",
+    type: "BB",
+    tier: 8,
+    nation: "德国",
+    premium: true,
+    tags: ["easy"],
+  },
 
   // ── T11 ─────────────────────────────────────────────────────────
   { zh: "新西伯利亚", en: "Novosibirsk", type: "CA", tier: 11, nation: "苏联" },
