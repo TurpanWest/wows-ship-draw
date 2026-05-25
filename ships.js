@@ -1977,6 +1977,7 @@ const SHIPS = [
     tier: 8,
     nation: "英国",
     premium: true,
+    tags: ["fun"],
   },
   {
     zh: "国会",
@@ -2006,6 +2007,7 @@ const SHIPS = [
     tier: 8,
     nation: "英国",
     premium: true,
+    tags: ["trash"],
   },
   { zh: "纪伊", en: "Kii", type: "BB", tier: 8, nation: "日本", premium: true },
   {
@@ -2015,6 +2017,7 @@ const SHIPS = [
     tier: 8,
     nation: "泛欧",
     premium: true,
+    tags: ["easy"],
   },
   { zh: "L-20", en: "L-20", type: "SS", tier: 8, nation: "苏联" },
   {
@@ -2033,6 +2036,7 @@ const SHIPS = [
     tier: 8,
     nation: "苏联",
     premium: true,
+    tags: ["winning"],
   },
   {
     zh: "贝尔法斯特43",
@@ -2302,6 +2306,7 @@ const SHIPS = [
     tier: 8,
     nation: "德国",
     premium: true,
+    tags: ["easy"],
   },
   {
     zh: "查理-马特",
@@ -2423,7 +2428,14 @@ const SHIPS = [
     premium: true,
   },
   { zh: "君主", en: "Monarch", type: "BB", tier: 8, nation: "英国" },
-  { zh: "秋月", en: "Akizuki", type: "DD", tier: 8, nation: "日本" },
+  {
+    zh: "秋月",
+    en: "Akizuki",
+    type: "DD",
+    tier: 8,
+    nation: "日本",
+    tags: ["winning"],
+  },
   {
     zh: "德米特里·波扎尔斯基",
     en: "Dmitry Pozharsky",
