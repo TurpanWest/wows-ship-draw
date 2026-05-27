@@ -1017,6 +1017,13 @@ const SHIPS = [
     nation: "美国",
     tags: ["trash"],
   },
+  {
+    zh: "皮耶特罗·卡尔维",
+    en: "Pietro Calvi",
+    type: "SS",
+    tier: 10,
+    nation: "意大利",
+  },
 
   // ── T9 ──────────────────────────────────────────────────────────
   {
@@ -2477,6 +2484,13 @@ const SHIPS = [
     nation: "英国",
     premium: true,
     tags: ["easy"],
+  },
+  {
+    zh: "皮耶特罗·米卡",
+    en: "Pietro Micca",
+    type: "SS",
+    tier: 8,
+    nation: "意大利",
   },
 
   // ── T11 ─────────────────────────────────────────────────────────
