@@ -1646,6 +1646,14 @@ const SHIPS = [
     premium: true,
   },
   {
+    zh: "沃斯堡",
+    en: "Fort Worth",
+    type: "CA",
+    tier: 9,
+    nation: "美国",
+    premium: true,
+  },
+  {
     zh: "波美拉尼亚",
     en: "Pommern",
     type: "BB",
