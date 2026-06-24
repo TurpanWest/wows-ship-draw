@@ -1023,6 +1023,15 @@ const SHIPS = [
     type: "SS",
     tier: 10,
     nation: "意大利",
+    tags: ["trash"],
+  },
+  {
+    zh: "九月七日",
+    en: "Sete de Setembro",
+    type: "BB",
+    tier: 10,
+    nation: "泛美",
+    premium: true,
   },
 
   // ── T9 ──────────────────────────────────────────────────────────
