@@ -1670,6 +1670,14 @@ const SHIPS = [
     nation: "德国",
     premium: true,
   },
+  {
+    zh: "包头",
+    en: "Baotou",
+    type: "CA",
+    tier: 9,
+    nation: "泛亚",
+    premium: true,
+  },
 
   // ── T8 ──────────────────────────────────────────────────────────
   {
