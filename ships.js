@@ -1033,6 +1033,14 @@ const SHIPS = [
     nation: "泛美",
     premium: true,
   },
+  {
+    zh: "绿伯爵",
+    en: "Conte Verde",
+    type: "BB",
+    tier: 10,
+    nation: "意大利",
+    premium: true,
+  },
 
   // ── T9 ──────────────────────────────────────────────────────────
   {
