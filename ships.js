@@ -2541,6 +2541,7 @@ const SHIPS = [
   { zh: "孔代", en: "Condé", type: "CA", tier: 11, nation: "法国" },
   { zh: "祖国", en: "Patrie", type: "BB", tier: 11, nation: "法国" },
   { zh: "皮埃蒙特", en: "Piemonte", type: "CA", tier: 11, nation: "意大利" },
+  { zh: "沉舰者", en: "Affondatore", type: "BB", tier: 11, nation: "意大利" },
   { zh: "昆明", en: "Kunming", type: "DD", tier: 11, nation: "泛亚" },
   {
     zh: "杰克逊维尔",
