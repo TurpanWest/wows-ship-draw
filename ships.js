@@ -1041,6 +1041,14 @@ const SHIPS = [
     nation: "意大利",
     premium: true,
   },
+  {
+    zh: "冬月",
+    en: "Fuyutsuki",
+    type: "DD",
+    tier: 10,
+    nation: "日本",
+    premium: true,
+  },
 
   // ── T9 ──────────────────────────────────────────────────────────
   {
