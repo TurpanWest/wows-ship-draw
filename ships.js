@@ -1701,6 +1701,13 @@ const SHIPS = [
     nation: "泛亚",
     premium: true,
   },
+  {
+    zh: "新埃斯帕塔",
+    en: "Nueva Esparta",
+    type: "DD",
+    tier: 9,
+    nation: "泛美",
+  },
 
   // ── T8 ──────────────────────────────────────────────────────────
   {
