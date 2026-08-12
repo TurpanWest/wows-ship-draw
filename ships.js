@@ -2547,6 +2547,13 @@ const SHIPS = [
     tier: 8,
     nation: "意大利",
   },
+  {
+    zh: "瓜特穆斯",
+    en: "Cuauhtémoc",
+    type: "DD",
+    tier: 8,
+    nation: "泛美",
+  },
 
   // ── T11 ─────────────────────────────────────────────────────────
   { zh: "新西伯利亚", en: "Novosibirsk", type: "CA", tier: 11, nation: "苏联" },
